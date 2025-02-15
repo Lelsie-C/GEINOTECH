@@ -1,0 +1,91 @@
+[
+  {
+    "title": "Buzzer Project",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "An Arduino buzzer project introduces you to sound generation in electronics. With a buzzer, you can create simple tones or melodies, which are perfect for alarms, notifications, or interactive projects. This project is great for beginners looking to add an audible element to their Arduino creations."
+      },
+      {
+        "type": "header",
+        "content": "Requirements"
+      },
+      {
+        "type": "text",
+        "content": "- Buzzer (Active or Passive)"
+      },
+      {
+        "type": "text",
+        "content": "- Arduino board (UNO, NANO, etc.)"
+      },
+      {
+        "type": "text",
+        "content": "- Breadboard"
+      },
+      {
+        "type": "text",
+        "content": "- Jumper wires"
+      },
+      {
+        "type": "header",
+        "content": "Setup"
+      },
+      {
+        "type": "text",
+        "content": "- Place the buzzer on the breadboard. (For an active buzzer, it will sound when powered. For a passive buzzer, you need to generate a tone.)"
+      },
+      {
+        "type": "text",
+        "content": "- Connect the positive terminal (usually the longer lead) of the buzzer to a digital output pin on the Arduino (e.g., pin 8)."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the negative terminal (shorter lead) of the buzzer to the GND pin on the Arduino."
+      },
+      {
+        "type": "text",
+        "content": "- If using a passive buzzer, you'll use the Arduino's tone() function to generate sound at a desired frequency."
+      },
+      {
+        "type": "header",
+        "content": "Code and Explanation"
+      },
+      {
+        "type": "text",
+        "content": [
+          "Open your Arduino IDE (or use the ",
+          {
+            "type": "link",
+            "text": "Arduino web editor",
+            "url": "https://app.arduino.cc/sketches"
+          },
+          ") and use the following code:"
+        ]
+      },
+      {
+        "type": "code",
+        "code": [
+          "// Define the digital pin connected to the buzzer",
+          "const int buzzerPin = 8;",
+          "",
+          "void setup() {",
+          "  // Set the buzzer pin as an output",
+          "  pinMode(buzzerPin, OUTPUT);",
+          "}",
+          "",
+          "void loop() {",
+          "  // Generate a tone of 1000 Hz for 500ms (for a passive buzzer)",
+          "  tone(buzzerPin, 1000);",
+          "  delay(500);",
+          "",
+          "  // Stop the tone and wait for 500ms",
+          "  noTone(buzzerPin);",
+          "  delay(500);",
+          "}"
+        ],
+        "language": "c++"
+      }
+    ],
+    "videoId": "M7lc1UVf-VE"
+  }
+]

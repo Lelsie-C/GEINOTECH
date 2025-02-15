@@ -1,0 +1,115 @@
+[
+  {
+    "title": "RGB Led",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "An RGB LED project allows you to mix red, green, and blue light to produce a wide range of colors. With an Arduino, you can control each color channel individually using PWM (Pulse Width Modulation) to adjust brightness levels and create custom color effects. This project is great for learning about color mixing and for adding dynamic lighting to your projects."
+      },
+      {
+        "type": "header",
+        "content": "Requirements"
+      },
+      {
+        "type": "text",
+        "content": "- Common cathode or common anode RGB LED"
+      },
+      {
+        "type": "text",
+        "content": "- 3 current-limiting resistors (typically 220Ω to 330Ω for each color channel)"
+      },
+      {
+        "type": "text",
+        "content": "- Arduino board (UNO, Nano, etc.)"
+      },
+      {
+        "type": "text",
+        "content": "- Breadboard"
+      },
+      {
+        "type": "text",
+        "content": "- Jumper wires"
+      },
+      {
+        "type": "header",
+        "content": "Setup"
+      },
+      {
+        "type": "text",
+        "content": "For a common cathode RGB LED, connect the common cathode (the longest leg) to the Arduino's GND. Then, connect the red, green, and blue anodes to PWM-capable digital pins (e.g., pins 9, 10, and 11) through appropriate current-limiting resistors."
+      },
+      {
+        "type": "header",
+        "content": "Code and Explanation"
+      },
+      {
+        "type": "text",
+        "content": "The following Arduino sketch cycles through various colors by adjusting the PWM values for each channel. This demonstrates how you can blend colors and create different lighting effects."
+      },
+      {
+        "type": "code",
+        "code": [
+          "const int redPin = 9;",
+          "const int greenPin = 10;",
+          "const int bluePin = 11;",
+          "",
+          "void setup() {",
+          "  pinMode(redPin, OUTPUT);",
+          "  pinMode(greenPin, OUTPUT);",
+          "  pinMode(bluePin, OUTPUT);",
+          "}",
+          "",
+          "void loop() {",
+          "  // Red",
+          "  analogWrite(redPin, 255);",
+          "  analogWrite(greenPin, 0);",
+          "  analogWrite(bluePin, 0);",
+          "  delay(1000);",
+          "",
+          "  // Green",
+          "  analogWrite(redPin, 0);",
+          "  analogWrite(greenPin, 255);",
+          "  analogWrite(bluePin, 0);",
+          "  delay(1000);",
+          "",
+          "  // Blue",
+          "  analogWrite(redPin, 0);",
+          "  analogWrite(greenPin, 0);",
+          "  analogWrite(bluePin, 255);",
+          "  delay(1000);",
+          "",
+          "  // Yellow (Red + Green)",
+          "  analogWrite(redPin, 255);",
+          "  analogWrite(greenPin, 255);",
+          "  analogWrite(bluePin, 0);",
+          "  delay(1000);",
+          "",
+          "  // Purple (Red + Blue)",
+          "  analogWrite(redPin, 255);",
+          "  analogWrite(greenPin, 0);",
+          "  analogWrite(bluePin, 255);",
+          "  delay(1000);",
+          "",
+          "  // Cyan (Green + Blue)",
+          "  analogWrite(redPin, 0);",
+          "  analogWrite(greenPin, 255);",
+          "  analogWrite(bluePin, 255);",
+          "  delay(1000);",
+          "",
+          "  // White (Red + Green + Blue)",
+          "  analogWrite(redPin, 255);",
+          "  analogWrite(greenPin, 255);",
+          "  analogWrite(bluePin, 255);",
+          "  delay(1000);",
+          "}"
+        ],
+        "language": "c++"
+      },
+      {
+        "type": "text",
+        "content": "This sketch uses analogWrite() to set PWM values for the red, green, and blue channels, cycling through several colors. Adjust the delay and PWM values as needed to create custom effects."
+      }
+    ],
+    "videoId": "M7lc1UVf-VE"
+  }
+]

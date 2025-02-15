@@ -1,0 +1,98 @@
+[
+  {
+    "title": "Servomotor",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "A servo motor is a small, precise motor that includes a built-in control circuit. In this project, you'll learn how to control a servo motor with an Arduino to achieve smooth rotational motion. Servo motors are widely used in robotics, remote-controlled vehicles, and automation projects due to their accuracy and ease of control."
+      },
+      {
+        "type": "header",
+        "content": "Requirements"
+      },
+      {
+        "type": "text",
+        "content": "- Servo Motor (e.g., SG90 or similar)"
+      },
+      {
+        "type": "text",
+        "content": "- Arduino board (UNO, Nano, etc.)"
+      },
+      {
+        "type": "text",
+        "content": "- Breadboard"
+      },
+      {
+        "type": "text",
+        "content": "- Jumper wires"
+      },
+      {
+        "type": "text",
+        "content": "- External power supply (if needed for higher-torque servos)"
+      },
+      {
+        "type": "header",
+        "content": "Setup"
+      },
+      {
+        "type": "text",
+        "content": "- Connect the servo's power wire (usually red) to the 5V pin on the Arduino (or an external 5V supply)."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the servo's ground wire (usually brown or black) to the GND pin on the Arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the servo's control wire (usually yellow or orange) to a PWM-capable digital pin on the Arduino (e.g., pin 9)."
+      },
+      {
+        "type": "text",
+        "content": "- If using an external power supply, make sure to connect its ground to the Arduino's ground."
+      },
+      {
+        "type": "header",
+        "content": "Code and Explanation"
+      },
+      {
+        "type": "text",
+        "content": [
+          "Open your Arduino IDE (or the ",
+          {
+            "type": "link",
+            "text": "Arduino web editor",
+            "url": "https://app.arduino.cc/sketches"
+          },
+          ") and use the following code to control the servo motor:"
+        ]
+      },
+      {
+        "type": "code",
+        "code": [
+          "#include <Servo.h>",
+          "",
+          "Servo myservo;  // create servo object to control a servo",
+          "",
+          "void setup() {",
+          "  myservo.attach(9);  // attaches the servo on pin 9 to the servo object",
+          "}",
+          "",
+          "void loop() {",
+          "  // Sweep the servo from 0 to 180 degrees",
+          "  for (int pos = 0; pos <= 180; pos += 1) {",
+          "    myservo.write(pos);",
+          "    delay(15);",
+          "  }",
+          "  // Then sweep it back from 180 to 0 degrees",
+          "  for (int pos = 180; pos >= 0; pos -= 1) {",
+          "    myservo.write(pos);",
+          "    delay(15);",
+          "  }",
+          "}"
+        ],
+        "language": "c++"
+      }
+    ],
+    "videoId": "M7lc1UVf-VE"
+  }
+]

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programming Languages</title>
+    <link rel="stylesheet" href="{% static 'css/style02.css' %}" />
+  </head>
+  <body>
+    <h1>Arduino</h1>
+    <div class="card-container">
+      {% for language in languages %}
+      <div class="card" onclick="openModal('{{ language.name }}')">
+        <img src="{{ language.icon.url }}" alt="{{ language.name }} Icon" />
+        <h3>{{ language.name }}</h3>
+        <p>{{ language.description }}</p>
+        <a href="{% url 'python_programming' language.name %}">Get Started</a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Modals -->
+    <!-- Modals -->
+    {% for language in languages %}
+    <div id="{{ language.name }}-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('{{ language.name }}')"
+          >&times;</span
+        >
+        <h2>{{ language.name }}</h2>
+        <p>Learn on {{ language.name }} with Arduino</p>
+        <!-- Updated the link to point to the correct page -->
+        <a href="{% url 'python_programming' language.name %}" class="button"
+          >Learn</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+
+    <script>
+      function openModal(languageName) {
+        document.getElementById(languageName + "-modal").style.display =
+          "block";
+      }
+
+      function closeModal(languageName) {
+        document.getElementById(languageName + "-modal").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

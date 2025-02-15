@@ -1,0 +1,91 @@
+[
+  {
+    "title": "8x8 LED Matrix",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "An 8x8 LED matrix project lets you display text, animations, and patterns on a grid of 64 LEDs. By learning to multiplex the LEDs, you can control an entire matrix with just a few Arduino pins. This project is a fun way to explore digital display techniques and can be used for creating scrolling messages or simple graphics."
+      },
+      {
+        "type": "header",
+        "content": "Requirements"
+      },
+      {
+        "type": "text",
+        "content": "- 8x8 LED Matrix (common cathode or common anode, or an LED module with a driver such as MAX7219)"
+      },
+      {
+        "type": "text",
+        "content": "- Arduino board (UNO, Nano, etc.)"
+      },
+      {
+        "type": "text",
+        "content": "- Jumper wires"
+      },
+      {
+        "type": "text",
+        "content": "- Breadboard"
+      },
+      {
+        "type": "text",
+        "content": "- (Optional) 8 resistors (if using a raw matrix without an integrated driver)"
+      },
+      {
+        "type": "header",
+        "content": "Setup"
+      },
+      {
+        "type": "text",
+        "content": "For a module with a MAX7219 driver, connect the module's DIN, CLK, and CS pins to three digital pins on the Arduino (for example, pins 12, 11, and 10 respectively). Power the module with 5V and GND from the Arduino. If you are wiring a raw 8x8 matrix, follow the wiring diagram provided with your matrix and ensure proper current-limiting resistors are used."
+      },
+      {
+        "type": "header",
+        "content": "Code and Explanation"
+      },
+      {
+        "type": "text",
+        "content": [
+          "Open your Arduino IDE (or use the ",
+          {
+            "type": "link",
+            "text": "Arduino web editor",
+            "url": "https://app.arduino.cc/sketches"
+          },
+          ") and use the following code. This example uses the LedControl library to control a MAX7219-based 8x8 LED module. Make sure to install the LedControl library from the Library Manager."
+        ]
+      },
+      {
+        "type": "code",
+        "code": [
+          "#include <LedControl.h>",
+          "",
+          "// Pins: DIN, CLK, CS; 1 device (the 8x8 LED module)",
+          "LedControl lc = LedControl(12, 11, 10, 1);",
+          "",
+          "void setup() {",
+          "  // Wake up the MAX7219 from power-saving mode",
+          "  lc.shutdown(0, false);",
+          "  // Set brightness level (0-15)",
+          "  lc.setIntensity(0, 8);",
+          "  // Clear display",
+          "  lc.clearDisplay(0);",
+          "}",
+          "",
+          "void loop() {",
+          "  // Display a pattern on each row",
+          "  for (int row = 0; row < 8; row++) {",
+          "    // Example pattern: alternating LEDs on and off",
+          "    lc.setRow(0, row, B10101010);",
+          "    delay(200);",
+          "  }",
+          "  // Clear the display and pause",
+          "  lc.clearDisplay(0);",
+          "  delay(500);",
+          "}"
+        ],
+        "language": "c++"
+      }
+    ],
+    "videoId": "M7lc1UVf-VE"
+  }
+]

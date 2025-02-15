@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email Notification</title>
+    <style>
+      /* General body styles */
+      body {
+        background-color: black;
+        color: orangered;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      /* Container to centralize content */
+      .container {
+        text-align: center;
+        width: 100%;
+      }
+
+      /* Styling the form */
+      form {
+        display: inline-block;
+        background-color: #333;
+        padding: 20px;
+        border-radius: 10px;
+        width: 500px;
+        border: 2px solid rgb(9, 127, 154);
+      }
+
+      /* Styling form elements */
+      input,
+      button,
+      select,
+      textarea {
+        width: 90%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid rgb(9, 127, 154);
+        border-radius: 5px;
+        background-color: #444;
+        color: white;
+      }
+
+      input:focus,
+      textarea:focus,
+      button:focus {
+        outline: none;
+        border-color: rgb(9, 127, 154);
+      }
+
+      /* Button styling */
+      button {
+        background-color: rgb(9, 127, 154);
+        color: white;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: orangered;
+      }
+
+      /* Heading styling */
+      h1 {
+        color: rgb(9, 127, 154);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Emails</h1>
+      <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Send Email</button>
+      </form>
+    </div>
+  </body>
+</html>

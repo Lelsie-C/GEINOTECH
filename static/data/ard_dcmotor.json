@@ -1,0 +1,110 @@
+[
+  {
+    "title": "DC Motor",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "A DC Motor project with an Arduino demonstrates how to control a motor's rotation, speed, and direction. In this project, you'll learn how to use a motor driver (or a transistor-based circuit) to safely control a DC motor. This project is ideal for robotics, automated vehicles, or any application that requires motor control."
+      },
+      {
+        "type": "header",
+        "content": "Requirements"
+      },
+      {
+        "type": "text",
+        "content": "- DC Motor (e.g., a small hobby motor)"
+      },
+      {
+        "type": "text",
+        "content": "- Arduino board (UNO, Nano, etc.)"
+      },
+      {
+        "type": "text",
+        "content": "- Motor driver (e.g., L293D, L298N) or transistor + diode circuit"
+      },
+      {
+        "type": "text",
+        "content": "- External power supply (if needed for the motor)"
+      },
+      {
+        "type": "text",
+        "content": "- Breadboard"
+      },
+      {
+        "type": "text",
+        "content": "- Jumper wires"
+      },
+      {
+        "type": "header",
+        "content": "Setup"
+      },
+      {
+        "type": "text",
+        "content": "Wiring may vary depending on your motor driver. For an L293D driver: "
+      },
+      {
+        "type": "text",
+        "content": "- Connect the two leads of the DC motor to the motor output pins on the driver."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the driver’s input pins to digital output pins on the Arduino (one for direction control and one for speed via PWM)."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the driver’s VCC to an external power supply (or Arduino's 5V for low-current motors) and GND to the Arduino's GND."
+      },
+      {
+        "type": "header",
+        "content": "Code and Explanation"
+      },
+      {
+        "type": "text",
+        "content": [
+          "Open your Arduino IDE (or use the ",
+          {
+            "type": "link",
+            "text": "Arduino web editor",
+            "url": "https://app.arduino.cc/sketches"
+          },
+          ") and use the following code. This sample code uses PWM to control the motor speed and toggles the direction after each cycle."
+        ]
+      },
+      {
+        "type": "code",
+        "code": [
+          "// Define motor control pins",
+          "const int motorSpeedPin = 9;      // PWM pin connected to motor speed control",
+          "const int motorDirectionPin = 8;  // Digital pin connected to motor direction control",
+          "",
+          "void setup() {",
+          "  pinMode(motorSpeedPin, OUTPUT);",
+          "  pinMode(motorDirectionPin, OUTPUT);",
+          "}",
+          "",
+          "void loop() {",
+          "  // Set motor direction (HIGH or LOW)",
+          "  digitalWrite(motorDirectionPin, HIGH);",
+          "",
+          "  // Gradually increase speed from 0 to 255",
+          "  for (int speed = 0; speed <= 255; speed++) {",
+          "    analogWrite(motorSpeedPin, speed);",
+          "    delay(10);",
+          "  }",
+          "",
+          "  // Gradually decrease speed from 255 to 0",
+          "  for (int speed = 255; speed >= 0; speed--) {",
+          "    analogWrite(motorSpeedPin, speed);",
+          "    delay(10);",
+          "  }",
+          "",
+          "  // Reverse motor direction",
+          "  digitalWrite(motorDirectionPin, !digitalRead(motorDirectionPin));",
+          "}"
+        ],
+        "language": "c++"
+      }
+    ],
+    "videoId": "M7lc1UVf-VE"
+  }
+]

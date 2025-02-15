@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ subject }}</title>
+    <!-- Dynamically set the email subject -->
+    <style>
+      /* General body styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      /* Styling the heading (subject) */
+      h1 {
+        color: rgb(9, 127, 154);
+        text-align: center;
+        font-size: 24px;
+        margin-top: 20px;
+      }
+
+      /* Styling the message (content) */
+      p {
+        color: orangered;
+        font-size: 16px;
+        text-align: center;
+        padding: 0 20px;
+        line-height: 1.6;
+      }
+
+      /* Logo image styling */
+      img {
+        display: block;
+        margin: 20px auto;
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Footer styling */
+      footer {
+        text-align: center;
+        padding: 20px 0;
+        background-color: #333;
+        color: white;
+      }
+
+      footer p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{ subject }}</h1>
+    <p>{{ message }}</p>
+
+    <!-- Embedding the logo image using CID (Content-ID) -->
+    <img src="cid:website_image" alt="Your Website Logo" />
+
+    <!-- Footer content -->
+    <footer>
+      <p>Thank you for being part of our community!</p>
+    </footer>
+  </body>
+</html>

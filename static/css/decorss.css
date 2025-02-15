@@ -1,0 +1,212 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  header {
+    background: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+  }
+  
+  header a.active {
+    background: #555;
+  }
+  
+  .menu-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .container {
+    display: flex;
+    flex: 1;
+  }
+  
+  .side-nav {
+    background: rgb(7, 163, 169);
+    width: 20%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .side-nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .side-nav li {
+    margin: 10px 0;
+  }
+  
+  .side-nav a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .right-section {
+    background: #f4f4f4;
+    width: 20%;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  #video-icon {
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 10px;
+    color: red;
+  }
+  
+  /* Small screen styles */
+  @media (max-width: 768px) {
+    .side-nav {
+      display: none;
+    }
+  
+    .menu-icon {
+      display: block;
+    }
+  
+    .container {
+      flex-direction: column;
+    }
+  
+    .right-section {
+      display: none;
+    }
+  
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    #video-icon {
+      margin-left: 20px;
+    }
+  }
+  
+  /* Container for Dynamic Content */
+  #dynamic-content {
+    background-color: black; /* Light background for better readability */
+    border: 1px solid #e0e0e0; /* Light gray border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Inner spacing */
+    margin-top: 20px; /* Space from the top */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: Arial, sans-serif; /* Clean font style */
+  }
+  
+  /* Title Styling */
+  #dynamic-content h2 {
+    color: rgb(7, 163, 169); /* Dark gray color for the title */
+    font-size: 1.8rem; /* Larger font size for title */
+    margin-bottom: 10px; /* Space below the title */
+    border-bottom: 2px solid #2c3e50; /* Underline effect */
+    padding-bottom: 5px; /* Padding below the title */
+    text-align: center;
+  }
+  
+  /* Paragraph Styling */
+  #dynamic-content p {
+    font-size: 1rem; /* Normal font size */
+    line-height: 1.6; /* Increase line spacing for better readability */
+    color: rgb(223, 210, 210); /* Softer gray for text */
+    margin: 15px 0; /* Space around paragraphs */
+    margin-bottom: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+  }
+  #dynamic-content h4 {
+    line-height: 1.6; /* Increase line spacing for better readability */
+    color: orangered; /* Softer gray for text */
+    margin: 10px 0; /* Space around paragraphs */
+    margin-bottom: 4px;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  #dynamic-content pre{
+    background-color: white;
+    border: 1px solid black; /* Light gray border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 0px; /* Inner spacing */
+    margin-top: 20px; /* Space from the top */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: Arial, sans-serif; /* Clean font style */
+
+  }
+  
+  code{
+    line-height: 0.5;
+   
+  }
+
+  #dynamic-content pre code{
+   color: black;
+   margin-left: -70px;
+  }
+
+  /* Links in Content */
+  #dynamic-content a {
+    color: #0078d7; /* Blue color for links */
+    text-decoration: underline; /* Underline links */
+  }
+  
+  #dynamic-content a:hover {
+    color: green; /* Darker blue on hover */
+    text-decoration: none; /* Remove underline on hover */
+  }
+  
+  /* Styling for Error Messages */
+  #dynamic-content h2.error {
+    color: rgb(49, 20, 49); /* Red color for error title */
+  }
+  
+  #dynamic-content p.error {
+    color: #c0392b; /* Darker red for error message */
+  }
+  
+  /* Video Player Section */
+  #video-player {
+    margin-top: 20px; /* Space above the video player */
+    text-align: center; /* Center align the video */
+  }
+  
+  #video-player button {
+    background-color: #0078d7; /* Button color */
+    color: #fff; /* White text */
+    border: none; /* Remove borders */
+    padding: 10px 15px; /* Button padding */
+    font-size: 1rem; /* Font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  #video-player button:hover {
+    background-color: #0056a6; /* Darker button on hover */
+  }
+  

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style01.css' %}?v=1" />
+
+    <title>GEINOTECH</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (!localStorage.getItem("cookieConsent")) {
+          setTimeout(() => {
+            let consentBanner = document.createElement("div");
+            consentBanner.innerHTML = `
+                      <div style="position:fixed; bottom:0; width:100%; background:#222; color:#fff; text-align:center; padding:10px; min-height: 70px; ">
+                          This website uses cookies to improve your experience. 
+                          <a href="{% url 'privacy_policy' %}" style="color: rgb(20, 189, 227); ">Learn more</a>
+                          <button onclick="acceptCookies()" style="margin-left:10px; padding:5px 10px; border-radius: 5px; background: rgb(20, 189, 227); color:#fff; border:none; cursor:pointer;">Accept</button>
+                          <button onclick="acceptCookies()" style="margin-left:10px; padding:5px 10px; border-radius: 5px; background: rgb(20, 189, 227); color:#fff; border:none; cursor:pointer;">Decline</button>
+                          
+                      </div>
+                  `;
+            document.body.appendChild(consentBanner);
+          }, 4000); // 3-second delay
+        }
+      });
+
+      function acceptCookies() {
+        localStorage.setItem("cookieConsent", "true");
+        document.body.removeChild(document.body.lastElementChild);
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+      <!-- Hamburger button -->
+      <ul class="mobile-menu" id="mobile-menu">
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'prolan' %}">Learn</a></li>
+
+        {% else %}
+        <button class="cta-button" onclick="openModal('loginModal')">
+          Learn
+        </button>
+        {% endif %} {% if user.is_authenticated %}
+        <li><a href="{% url 'update' %}">Notifications</a></li>
+        {% else %}
+        <button class="cta-button" onclick="openModal('loginModal')">
+          Notification
+        </button>
+        {% endif %}
+      </ul>
+      <div class="LN">
+        <img src="{% static 'images/geno.png' %}" alt="Logo" class="logo" />
+        <span class="logo-name">GEINO<span class="dev">TECH</span></span>
+      </div>
+      <ul class="nav-links">
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'prolan' %}">Learn</a></li>
+        {% else %}
+        <button class="cta-button" onclick="openModal('loginModal')">
+          Learn
+        </button>
+        {% endif %} {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'update' %}">Notifications</a>
+        </li>
+        {% else %}
+        <button class="cta-button" onclick="openModal('loginModal')">
+          Notification
+        </button>
+        {% endif %}
+      </ul>
+      <div class="silo">
+        {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="login">Logout</button>
+        </form>
+        {% else %}
+        <button class="login" onclick="openModal('loginModal')">Login</button>
+        {% endif %}
+      </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Login</h2>
+          <button class="close" onclick="closeModal('loginModal')">
+            &times;
+          </button>
+        </div>
+        <form method="POST" action="{% url 'login' %}">
+          {% csrf_token %}
+          <div class="modal-body">
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            {% if error_message and modal == 'login' %}
+            <div class="error-message">{{ error_message }}</div>
+            {% endif %}
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn-primary">Login</button>
+            <button
+              type="button"
+              class="btn-secondary"
+              onclick="openModal('registerModal')"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Register</h2>
+          <button class="close" onclick="closeModal('registerModal')">
+            &times;
+          </button>
+        </div>
+        <form method="POST" action="{% url 'register' %}">
+          {% csrf_token %}
+          <div class="modal-body">
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              required
+            />
+            <input type="email" name="email" placeholder="Email" required />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <input
+              type="password"
+              name="confirm_password"
+              placeholder="Confirm Password"
+              required
+            />
+            {% if error_message and modal == 'register' %}
+            <div class="error-message">{{ error_message }}</div>
+            {% endif %}
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn-primary">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-left">
+          <span class="wel"
+            >Welcome to
+            <span class="geno">GEINO<span class="devs">TECH</span></span></span
+          >
+          <p>Learn, Build, and Grow.</p>
+          {% if user.is_authenticated %}
+          <a href="{% url 'prolan' %}" class="cta-button">Get Started</a>
+          <h5
+            id="loginMessage"
+            style="
+              margin-top: 40px;
+              margin_bottom: -400px;
+              color: green;
+              padding: 15px;
+              background-color: rgb(61, 255, 61);
+            "
+          >
+            Login successful
+          </h5>
+
+          {% else %}
+          <button class="cta-button" onclick="openModal('loginModal')">
+            Get Started
+          </button>
+          {% load socialaccount %}
+          <div class="gogspace">
+            <img
+              src="{% static 'images/google.png' %}"
+              alt="Logo"
+              class="google"
+            />
+            <a href="{%  provider_login_url 'google' %}?next=/"
+              >SignIn with google</a
+            >
+          </div>
+          {% endif %}
+        </div>
+        <div class="hero-right">
+          <img src="{% static 'images/development.png' %}" alt="Hero Image" />
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Open modal by ID
+      function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+      }
+
+      // Close modal by ID
+      function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+      }
+
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuToggle.addEventListener("click", () => {
+        console.log("Menu Toggle Clicked"); // Check if the event is firing
+        mobileMenu.classList.toggle("active");
+      });
+
+      // Open the correct modal dynamically if an error occurs
+      document.addEventListener("DOMContentLoaded", function () {
+        const modalToShow = "{{ modal }}";
+        if (modalToShow) {
+          openModal(modalToShow + "Modal");
+        }
+      });
+      // Wait for the page to load completely
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select the login message element
+        let message = document.getElementById("loginMessage");
+
+        // Set a timeout to hide the message after 3 seconds (3000 milliseconds)
+        setTimeout(function () {
+          message.style.display = "none";
+        }, 2000);
+      });
+    </script>
+
+    
+    </section>
+  </body>
+</html>

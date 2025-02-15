@@ -1,0 +1,149 @@
+[
+  {
+    "title": "LCD Display",
+    "blocks": [
+     
+      {
+        "type": "text",
+        "content": "An Arduino LCD display is a useful component in many DIY electronics projects. It allows you to show data and information, such as sensor readings or status updates, right on your project. With its versatility and ease of use, the LCD display is an essential part of many beginner and intermediate Arduino projects. An LCD (Liquid Crystal Display) is a type of screen that can display characters, numbers, and sometimes even graphics. It uses liquid crystals to form patterns and is commonly used in many electronic devices for its low power consumption and clear readability. In Arduino projects, 16x2 LCD screens are popular. This means the display has 16 columns and 2 rows, allowing you to show up to 32 characters at a time. These displays can show text, numbers, and even symbols to communicate important information from your Arduino project. "
+      },
+      
+      {
+        "type": "header",
+        "content": "Requirements"
+      },
+      {
+        "type": "text",
+        "content": "- LCD Screen"
+      },
+      {
+        "type": "text",
+        "content": "- Arduino(UNO, NANO, etc....)"
+      },
+      {
+        "type": "text",
+        "content": "- 15-20 wires"
+      },
+      {
+        "type": "text",
+        "content": "- Breadboard"
+      },
+      {
+        "type": "text",
+        "content": "- Potentiometer"
+      },
+      {
+        "type": "text",
+        "content": "- 5V power supply(you can either use a battery or connect it directly to a powered device.)"
+      },
+      {
+        "type": "header",
+        "content": "Setup"
+      },
+      {
+        "type": "text",
+        "content": "- Place your breadboard horizontal to you, then insert the LCD screen horizontally too preferably in the middle section of the breadboard(section with wires linked vertically respective to the horizontal position of your breadboard. Note that most arduino kit con=me with the LCD screen not soldered, so it will need to be solded before use."
+      },
+      {
+        "type": "text",
+        "content": "- On the top of the LCD screen, you will see some writtings, this helps you know where to connect each pin"
+      },
+      {
+        "type": "text",
+        "content": "- Connect the GND(first pin) of the LCD to the GND of the arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the VDO(second pin) of the LCD to the 5V of the arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the VO(third pin) of the LCD to the middle pin of the potentiometer."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the RS(fourth pin) of the LCD to the D7 of the arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the RW(fifth pin) of the LCD to the GND of the arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the E(sixth pin) of the LCD to the D6 of the arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the D4(eleventh pin) of the LCD to the D5 of the arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the D5(twelveth pin) of the LCD to the d4 of the arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the D6(thirteenth pin) of the LCD to the D3 of the arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the D7(fourteenth pin) of the LCD to the D2 of the arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the BLA(fifteenth pin) of the LCD to the 5V of the arduino(using a 220ohm resistor and not a wire for this case)."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the BLK(sixteenth pin) of the LCD to the GND of the arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect one of the remaining unconnected pins of the potentiometer to the GND of the arduino and the other one to the 5V of the arduino(the potentiometer is used to regulate the contrast of the LCD display)."
+    },
+      {
+        "type": "text",
+        "content": "- Connect your arduino to a device to be able to upload the sample code."
+      },
+      {
+        "type": "text",
+        "content": "- When connected to a power supply the arduino should automatically come on."
+      },
+      {
+        "type": "header",
+        "content": "Code and Explanation"
+      },
+      {
+        "type": "text",
+        "content": ["Make sure you have you arduino IDE installed and ready for use (you can still use the ",
+                   { "type": "link", "text": "arduino web editor).", "url": "https://app.arduino.cc/sketches" }
+      ]
+      },
+      {
+        "type": "code",
+        "code": [
+          "#include <LiquidCrystal.h>",
+          "",
+          "// Initialize the library with the pins connected to the LCD",
+          "LiquidCrystal lcd(7, 6, 5, 4, 3, 2);",
+          "",
+          "void setup() {",
+          "  lcd.begin(16, 2);  // Set up the LCD with 16 columns and 2 rows",
+          "  lcd.print(\"Hello, World!\");  // Print \"Hello, World!\" on the display",
+          "}",
+          "",
+          "void loop() {",
+          "  // Nothing here, the message stays on the screen",
+          "}"
+
+        ],
+        "language": "c++"
+      }
+
+    ],
+    "videoId": "M7lc1UVf-VE"
+  }
+
+]
+
+
+  

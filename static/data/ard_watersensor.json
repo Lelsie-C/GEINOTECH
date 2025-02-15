@@ -1,0 +1,95 @@
+[
+  {
+    "title": "Water Sensor",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "A water sensor project using an Arduino allows you to detect the presence of water or measure water levels. This project is ideal for applications such as water leak detection, monitoring water tanks, or automating irrigation systems. By integrating a water sensor with your Arduino, you can trigger alerts or control other devices when water is detected."
+      },
+      {
+        "type": "header",
+        "content": "Requirements"
+      },
+      {
+        "type": "text",
+        "content": "- Water sensor module (e.g., water leak sensor or water level sensor)"
+      },
+      {
+        "type": "text",
+        "content": "- Arduino board (UNO, Nano, etc.)"
+      },
+      {
+        "type": "text",
+        "content": "- Breadboard"
+      },
+      {
+        "type": "text",
+        "content": "- Jumper wires"
+      },
+      {
+        "type": "header",
+        "content": "Setup"
+      },
+      {
+        "type": "text",
+        "content": "- Connect the sensor's VCC pin to the 5V pin on the Arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the sensor's GND pin to the GND pin on the Arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the sensor's output pin to an analog input pin on the Arduino (for example, A0)."
+      },
+      {
+        "type": "text",
+        "content": "- Position the sensor in the area you want to monitor for water presence."
+      },
+      {
+        "type": "header",
+        "content": "Code and Explanation"
+      },
+      {
+        "type": "text",
+        "content": [
+          "Open your Arduino IDE (or the ",
+          {
+            "type": "link",
+            "text": "Arduino web editor",
+            "url": "https://app.arduino.cc/sketches"
+          },
+          ") and use the following code. Adjust the threshold value based on your sensor's calibration."
+        ]
+      },
+      {
+        "type": "code",
+        "code": [
+          "const int sensorPin = A0;  // Analog pin connected to the water sensor",
+          "const int threshold = 500; // Example threshold value (adjust based on calibration)",
+          "",
+          "void setup() {",
+          "  Serial.begin(9600);",
+          "  pinMode(sensorPin, INPUT);",
+          "}",
+          "",
+          "void loop() {",
+          "  int sensorValue = analogRead(sensorPin);",
+          "  Serial.print(\"Sensor Value: \");",
+          "  Serial.println(sensorValue);",
+          "",
+          "  if (sensorValue < threshold) {",
+          "    Serial.println(\"Water detected!\");",
+          "  } else {",
+          "    Serial.println(\"No water detected.\");",
+          "  }",
+          "",
+          "  delay(2000);  // Wait for 2 seconds before the next reading",
+          "}"
+        ],
+        "language": "c++"
+      }
+    ],
+    "videoId": "M7lc1UVf-VE"
+  }
+]

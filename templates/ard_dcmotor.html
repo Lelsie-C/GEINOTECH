@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Programming Tutorials</title>
+    <link rel="stylesheet" href="{% static 'css/decorss.css' %}" />
+    <script src="https://www.youtube.com/iframe_api"></script>
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <header>
+      <div class="top-nav">
+        <a href="#" class="active">LED Display</a>
+      </div>
+    </header>
+
+    <!-- Middle Section -->
+    <main class="main-content">
+      <div id="dynamic-content">
+        <h1>Welcome</h1>
+        <p>Select a tutorial to view content here.</p>
+      </div>
+    </main>
+
+    <script>
+      const tutorialsUrl = "{% static 'data/ard_dcmotor.json' %}"; // Path to your tutorials JSON
+      let tutorialsData = [];
+
+      // Initialize YouTube Player
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player("player", {
+          height: "390",
+          width: "640",
+          videoId: "", // Default empty video
+        });
+      }
+
+      // Fetch and Load Tutorials on Page Load
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch(tutorialsUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            tutorialsData = data;
+            // Automatically load the first tutorial
+            loadContent(tutorialsData[0].title);
+          })
+          .catch((error) => console.error("Error fetching tutorials:", error));
+      });
+
+      // Load Tutorial Content Dynamically
+      function loadContent(topic) {
+        const content = document.getElementById("dynamic-content");
+        const tutorial = tutorialsData.find((t) => t.title === topic);
+
+        if (tutorial) {
+          // Start with the tutorial title
+          content.innerHTML = `<h2>${tutorial.title}</h2>`;
+
+          // Iterate over the blocks array to dynamically generate content
+          tutorial.blocks.forEach((block) => {
+            if (block.type === "header") {
+              content.innerHTML += `<h4>${block.content}</h4>`;
+            } else if (block.type === "text") {
+              let formattedContent = "";
+
+              if (Array.isArray(block.content)) {
+                // Process each item in the array
+                block.content.forEach((item) => {
+                  if (typeof item === "string") {
+                    formattedContent += item;
+                  } else if (item.type === "link") {
+                    formattedContent += `<a href="${item.url}" target="_blank" style="color: #007bff; text-decoration: underline;">${item.text}</a>`;
+                  }
+                });
+              } else if (typeof block.content === "string") {
+                // Handle single string content
+                formattedContent = block.content;
+              }
+
+              content.innerHTML += `<p>${formattedContent}</p>`;
+            } else if (block.type === "code") {
+              content.innerHTML += `
+                <pre class="tutorial-code ${
+                  block.language
+                }" style="position: relative; padding: 10px; background-color: #f5f5f5; border-radius: 5px;">
+                  <button class="copy-code-btn" style="position: absolute; top: 10px; right: 10px; background-color: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Copy</button>
+                  <code class="code-content" style="white-space: pre-wrap; line-height: 1.2;">${
+                    Array.isArray(block.code)
+                      ? block.code.join("\n")
+                      : block.code
+                  }</code>
+                </pre>`;
+            }
+          });
+
+          // Add Copy Button functionality to each code block
+          const copyBtns = document.querySelectorAll(".copy-code-btn");
+          copyBtns.forEach((copyBtn) => {
+            copyBtn.addEventListener("click", () => {
+              const codeContent = copyBtn
+                .closest("pre")
+                .querySelector(".code-content");
+              const codeText = codeContent.textContent;
+              navigator.clipboard
+                .writeText(codeText)
+                .then(() => {
+                  // Change button text to "Copied"
+                  copyBtn.textContent = "Copied";
+                  // Revert button text to "Copy" after 2 seconds
+                  setTimeout(() => {
+                    copyBtn.textContent = "Copy";
+                  }, 2000);
+                })
+                .catch((err) => {
+                  console.error("Error copying code:", err);
+                });
+            });
+          });
+        } else {
+          content.innerHTML = `<h2>Error</h2><p>Content not found for ${topic}.</p>`;
+        }
+      }
+
+      // Show YouTube Video for Selected Tutorial
+      function showVideo(videoId) {
+        document.getElementById("video-player").style.display = "block";
+        player.loadVideoById(videoId);
+      }
+
+      // Toggle Fullscreen for Video
+      function toggleFullscreen() {
+        const iframe = player.getIframe();
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if (iframe.mozRequestFullScreen) {
+          iframe.mozRequestFullScreen();
+        } else if (iframe.webkitRequestFullscreen) {
+          iframe.webkitRequestFullscreen();
+        }
+      }
+
+      function copyToClipboard(button) {
+        const code = button.nextElementSibling.textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          button.textContent = "Copied!";
+          setTimeout(() => (button.textContent = "Copy"), 2000);
+        });
+      }
+    </script>
+  </body>
+</html>

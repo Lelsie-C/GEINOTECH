@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Temp & Hum sensor ",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "A temperature and humidity sensor project using an Arduino allows you to monitor environmental conditions such as ambient temperature and relative humidity. This project typically utilizes a sensor like the DHT11 or DHT22, which are popular for their ease of use and affordability. Such a project is ideal for creating weather stations, monitoring greenhouses, or even automating indoor climate control."
+      },
+      {
+        "type": "header",
+        "content": "Requirements"
+      },
+      {
+        "type": "text",
+        "content": "- Temperature & Humidity Sensor (e.g., DHT11 or DHT22)"
+      },
+      {
+        "type": "text",
+        "content": "- Arduino board (UNO, Nano, etc.)"
+      },
+      {
+        "type": "text",
+        "content": "- Breadboard"
+      },
+      {
+        "type": "text",
+        "content": "- Jumper wires"
+      },
+      {
+        "type": "header",
+        "content": "Setup"
+      },
+      {
+        "type": "text",
+        "content": "- Connect the VCC pin of the sensor to the 5V pin on the Arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the GND pin of the sensor to the GND pin on the Arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the data pin of the sensor to a digital input pin (for example, pin 2) on the Arduino."
+      },
+      {
+        "type": "header",
+        "content": "Code and Explanation"
+      },
+      {
+        "type": "text",
+        "content": [
+          "Open your Arduino IDE (or the ",
+          {
+            "type": "link",
+            "text": "Arduino web editor",
+            "url": "https://app.arduino.cc/sketches"
+          },
+          ") and use the following code. Make sure to install the DHT sensor library from the Library Manager."
+        ]
+      },
+      {
+        "type": "code",
+        "code": [
+          "#include <DHT.h>",
+          "",
+          "#define DHTPIN 2      // Digital pin connected to the DHT sensor",
+          "#define DHTTYPE DHT11 // Change to DHT22 if you're using that sensor",
+          "",
+          "DHT dht(DHTPIN, DHTTYPE);",
+          "",
+          "void setup() {",
+          "  Serial.begin(9600);",
+          "  dht.begin();",
+          "}",
+          "",
+          "void loop() {",
+          "  // Reading temperature or humidity takes about 250 milliseconds!",
+          "  float humidity = dht.readHumidity();",
+          "  float temperature = dht.readTemperature();",
+          "",
+          "  // Check if any reads failed and exit early (to try again).",
+          "  if (isnan(humidity) || isnan(temperature)) {",
+          "    Serial.println(\"Failed to read from DHT sensor!\");",
+          "    return;",
+          "  }",
+          "",
+          "  Serial.print(\"Humidity: \");",
+          "  Serial.print(humidity);",
+          "  Serial.print(\" %\t\");",
+          "  Serial.print(\"Temperature: \");",
+          "  Serial.print(temperature);",
+          "  Serial.println(\" °C\");",
+          "",
+          "  delay(2000);  // Wait a few seconds between measurements",
+          "}"
+        ],
+        "language": "c++"
+      }
+    ],
+    "videoId": "M7lc1UVf-VE"
+  }
+]

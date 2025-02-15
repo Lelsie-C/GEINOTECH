@@ -1,0 +1,95 @@
+[
+  {
+    "title": "Buttons",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "A push button is one of the simplest and most useful input devices in electronics. In this project, you'll learn how to read the state of a push button using an Arduino, and use it to control an output such as an LED. This forms the basis for more complex user input and interactive projects."
+      },
+      {
+        "type": "header",
+        "content": "Requirements"
+      },
+      {
+        "type": "text",
+        "content": "- Arduino board (UNO, Nano, etc.)"
+      },
+      {
+        "type": "text",
+        "content": "- Push button"
+      },
+      {
+        "type": "text",
+        "content": "- 10k ohm resistor (optional if using internal pull-up)"
+      },
+      {
+        "type": "text",
+        "content": "- Breadboard"
+      },
+      {
+        "type": "text",
+        "content": "- Jumper wires"
+      },
+      {
+        "type": "header",
+        "content": "Setup"
+      },
+      {
+        "type": "text",
+        "content": "For a simple button setup using the Arduino's internal pull-up resistor:"
+      },
+      {
+        "type": "text",
+        "content": "- Connect one side of the push button to digital pin 2 on the Arduino."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the other side of the button to ground (GND)."
+      },
+      {
+        "type": "text",
+        "content": "- Optionally, you can add an external resistor if you prefer a pull-down configuration, but using INPUT_PULLUP simplifies the wiring."
+      },
+      {
+        "type": "header",
+        "content": "Code and Explanation"
+      },
+      {
+        "type": "text",
+        "content": "Below is a simple Arduino sketch that reads the state of the push button and controls an LED on pin 13. The internal pull-up resistor is used, which means the input pin reads HIGH when the button is not pressed and LOW when it is pressed."
+      },
+      {
+        "type": "code",
+        "code": [
+          "const int buttonPin = 2;", 
+          "const int ledPin = 13;", 
+          "", 
+          "void setup() {", 
+          "  // Initialize the button pin as an input with the internal pull-up resistor", 
+          "  pinMode(buttonPin, INPUT_PULLUP);", 
+          "  // Initialize the LED pin as an output", 
+          "  pinMode(ledPin, OUTPUT);", 
+          "}", 
+          "", 
+          "void loop() {", 
+          "  // Read the state of the button", 
+          "  int buttonState = digitalRead(buttonPin);", 
+          "", 
+          "  // When the button is pressed, the state is LOW", 
+          "  if (buttonState == LOW) {", 
+          "    digitalWrite(ledPin, HIGH);  // Turn LED on", 
+          "  } else {", 
+          "    digitalWrite(ledPin, LOW);   // Turn LED off", 
+          "  }", 
+          "}"
+        ],
+        "language": "c++"
+      },
+      {
+        "type": "text",
+        "content": "This code uses the internal pull-up resistor on the button pin, so no external resistor is necessary for the button circuit. When the button is pressed, the circuit completes to ground and the pin reads LOW, triggering the LED to turn on."
+      }
+    ],
+    "videoId": "M7lc1UVf-VE"
+  }
+]

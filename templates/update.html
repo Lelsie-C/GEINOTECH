@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notifications</title>
+    <link rel="stylesheet" href="{% static 'css/update1.css' %}" />
+  </head>
+  <body>
+    <h1>Notifications</h1>
+
+    {% if updates %}
+    <div class="card-container">
+      {% for update in updates %}
+      <div class="card" onclick="openModal('{{ update.name }}')">
+        {% if update.icon %}
+        <img src="{{ update.icon.url }}" alt="{{ update.name }} Icon" />
+        {% else %}
+        <img src="{% static 'images/default-icon.png' %}" alt="Default Icon" />
+        <!-- Default image -->
+        {% endif %}
+        <h3>{{ update.name }}</h3>
+        <p>{{ update.description }}</p>
+        <a href="{% url 'tech_updates' update.name %}">Get Started</a>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="noup">No Notification available.</p>
+    {% endif %}
+  </body>
+</html>

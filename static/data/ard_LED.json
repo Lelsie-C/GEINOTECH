@@ -1,0 +1,100 @@
+[
+  {
+    "title": "LED Project",
+    "blocks": [
+      {
+        "type": "text",
+        "content": "An Arduino LED project is a basic yet essential electronics project that introduces you to digital output control. In this project, you'll learn how to use a Light Emitting Diode (LED) to create blinking patterns, adjust brightness via PWM, and build the foundation for more complex circuits. LEDs are widely used in indicator lights, decorative displays, and simple animations in DIY projects."
+      },
+      {
+        "type": "header",
+        "content": "Requirements"
+      },
+      {
+        "type": "text",
+        "content": "- LED (Light Emitting Diode)"
+      },
+      {
+        "type": "text",
+        "content": "- Arduino board (UNO, NANO, etc.)"
+      },
+      {
+        "type": "text",
+        "content": "- 220-ohm resistor (for current limiting)"
+      },
+      {
+        "type": "text",
+        "content": "- Breadboard"
+      },
+      {
+        "type": "text",
+        "content": "- Connecting wires"
+      },
+      {
+        "type": "text",
+        "content": "- Optional: Potentiometer (for PWM brightness control) or transistor (for multiple LEDs)"
+      },
+      {
+        "type": "header",
+        "content": "Setup"
+      },
+      {
+        "type": "text",
+        "content": "- Insert the LED into the breadboard. Remember: the longer leg (anode) is positive, and the shorter leg (cathode) is negative."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the anode of the LED to a digital output pin on the Arduino (for example, pin 13) through a 220-ohm resistor."
+      },
+      {
+        "type": "text",
+        "content": "- Connect the cathode of the LED to the GND (ground) pin on the Arduino."
+      },
+      {
+        "type": "text",
+        "content": "- If using a potentiometer for brightness control, connect one side to 5V, the other to GND, and the wiper (middle pin) to an analog input."
+      },
+      {
+        "type": "text",
+        "content": "- Power up the Arduino by connecting it to your computer or a dedicated power supply."
+      },
+      {
+        "type": "header",
+        "content": "Code and Explanation"
+      },
+      {
+        "type": "text",
+        "content": [
+          "Ensure you have the Arduino IDE installed (you can use the desktop IDE or the ",
+          {
+            "type": "link",
+            "text": "Arduino web editor",
+            "url": "https://app.arduino.cc/sketches"
+          },
+          ")."
+        ]
+      },
+      {
+        "type": "code",
+        "code": [
+          "void setup() {",
+          "  // Initialize digital pin 13 as an output for the LED",
+          "  pinMode(13, OUTPUT);",
+          "}",
+          "",
+          "void loop() {",
+          "  // Turn the LED on",
+          "  digitalWrite(13, HIGH);",
+          "  delay(1000);  // Wait for 1 second",
+          "",
+          "  // Turn the LED off",
+          "  digitalWrite(13, LOW);",
+          "  delay(1000);  // Wait for 1 second",
+          "}"
+        ],
+        "language": "c++"
+      }
+    ],
+    "videoId": "M7lc1UVf-VE"
+  }
+]
