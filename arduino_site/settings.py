@@ -29,12 +29,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xb)xsjvo=a@jfywv$^9ui!fk3bui=u+wnc43@o%l9wnevfgr@&'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = ['192.168.1.101', '0.0.0.0', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
 EMAIL_SENDER_NAME = "GEINOTECH" 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -117,7 +117,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+DATABASES["default"] = dj_database_url.parse(config("DATABASE_URL"))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
