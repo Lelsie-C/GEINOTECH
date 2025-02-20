@@ -625,9 +625,15 @@ display: flex; /* Show the mobile menu when active */
   color: green;
   background-color: rgb(61, 255, 61);
 }
-
 .hero-right img {
-  display: none;
+  display: inline-block;
+  margin-top: 380px;
+  min-width: 250px;
+  margin-left: -250px;
+  height: 200px;
+
+.imshow img {
+ display: none;
 }
 .modal {
   display: none;

@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
+import dj_database_url 
+from decouple import config
 
 # Define BASE_DIR first
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,6 +83,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",  # Add this line
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 
@@ -156,6 +160,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Points to the static directory in the root of the project
 ] # List of folders where Django will look for static files
 
+STATICFILES_STORAGE = "whitenoise.starage.CompressedManifestStaticFilesStorage"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -175,3 +181,5 @@ SOCIALACCOUNT_LOGIN_ON_GET = True  # Add this here
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+django_heroku.settings(locals())
